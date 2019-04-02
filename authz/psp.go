@@ -33,6 +33,9 @@ func ApplyDefaultPodSecurityPolicyRole(ctx context.Context, kubeConfigPath strin
 	if err := k8s.UpdateRoleBindingFromYaml(k8sClient, templates.DefaultPodSecurityRoleBinding); err != nil {
 		return err
 	}
+	if err := k8s.UpdateRoleBindingFromYaml(k8sClient, templates.DefaultSystemPodSecurtyRoleBinding); err != nil {
+		return err
+	}
 	log.Infof(ctx, "[authz] Default PodSecurityPolicy Role and RoleBinding applied successfully")
 	return nil
 }
